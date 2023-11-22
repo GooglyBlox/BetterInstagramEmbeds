@@ -1,5 +1,5 @@
 <div align='center'>
-   <img src='https://github.com/GooglyBlox/BetterInstagramEmbeds/blob/main/banner.png?raw=true' />
+   <img src='https://github.com/GooglyBlox/BetterInstagramEmbeds/blob/main/newbanner.png?raw=true' />
 </div>
 
 ---
