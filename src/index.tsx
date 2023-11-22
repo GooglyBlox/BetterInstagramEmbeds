@@ -11,10 +11,11 @@ const BetterInstagramEmbeds: Plugin = {
    onStart() {      
       Patcher.before(Messages, "sendMessage", (self, args, orig) => {
          const content = args[1]["content"];
-         if (content.includes("https://www.instagram.com/")) {
+         const instagramRegex = /https:\/\/www\.instagram\.com\/(p\/|reel\/)[^ ]+/g;
+         if (instagramRegex.test(content)) {
             args[1]["content"] = content.replace(
-               new RegExp("https://www.instagram.com/", "g"), 
-               "https://www.ddinstagram.com/"
+               instagramRegex, 
+               (match) => match.replace("https://www.instagram.com", "https://www.ddinstagram.com")
             );
          }
       });
