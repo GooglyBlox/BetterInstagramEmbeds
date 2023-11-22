@@ -3,7 +3,6 @@ import { create } from 'enmity/patcher';
 import { React, Messages } from 'enmity/metro/common';
 import { get } from 'enmity/api/settings';
 import manifest from '../manifest.json';
-import Settings from './components/Settings';
 
 const Patcher = create('BetterInstagramEmbeds');
 const BetterInstagramEmbeds: Plugin = {
@@ -23,9 +22,6 @@ const BetterInstagramEmbeds: Plugin = {
    onStop() {
       Patcher.unpatchAll();
    },
-   getSettingsPanel({ settings }) {
-      return <Settings settings={settings} />;
-   }
 };
 
 registerPlugin(BetterInstagramEmbeds);
