@@ -5,8 +5,8 @@ import { get } from 'enmity/api/settings';
 import manifest from '../manifest.json';
 import Settings from './components/Settings';
 
-const Patcher = create('ChangeInstagramLink');
-const ChangeInstagramLink: Plugin = {
+const Patcher = create('BetterInstagramEmbeds');
+const BetterInstagramEmbeds: Plugin = {
    ...manifest,
 
    onStart() {      
@@ -28,4 +28,4 @@ const ChangeInstagramLink: Plugin = {
    }
 };
 
-registerPlugin(ChangeInstagramLink);
+registerPlugin(BetterInstagramEmbeds);
