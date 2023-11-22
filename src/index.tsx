@@ -1,43 +1,31 @@
-import { get, set, SettingsStore } from "enmity/api/settings";
-import { FormRow, FormSection, FormSwitch } from "enmity/components";
-import { Plugin, registerPlugin } from "enmity/managers/plugins";
-import { Messages, React, Toasts } from "enmity/metro/common";
-import { create } from "enmity/patcher";
-import SettingsPage from "../common/components/_pluginSettings/settingsPage";
-import { Icons } from "../common/components/_pluginSettings/utils";
-import manifest from "../manifest.json";
+import { Plugin, registerPlugin } from 'enmity/managers/plugins';
+import { create } from 'enmity/patcher';
+import { React, Messages } from 'enmity/metro/common';
+import { get } from 'enmity/api/settings';
+import manifest from '../manifest.json';
+import Settings from './components/Settings';
 
-interface SettingsProps {
-    settings: SettingsStore;
-}
+const Patcher = create('ChangeInstagramLink');
+const ChangeInstagramLink: Plugin = {
+   ...manifest,
 
-const Patcher = create(manifest.name);
-
-const BetterInstagramEmbeds: Plugin = {
-    ...manifest,
-    onStart() {
-        try {
-            Patcher.before(Messages, "sendMessage", (_self, args, _orig) => {
-                const content = args[1]["content"];
-                const instagramLinks = content.match(/http(s)?:\/\/(www\.)?instagram\.com\/\w{4,15}\/p\/\w+/gim);
-                if (!instagramLinks) return;
-                args[1]["content"] = content.replace(/http(s)?:\/\/(www\.)?instagram\.com/gim, `https://www.ddinstagram.com`);
-            });
-        } catch (err) {
-            console.log("[ BetterInstagramEmbeds Error ]", err);
-        }
-    },
-    onStop() {
-        Patcher.unpatchAll();
-    },
-    patches: [],
-    getSettingsPanel({ settings }: SettingsProps) {
-        return <SettingsPage manifest={manifest} settings={settings} hasToasts={false} commands={null}>
-            <FormSection title="Plugin Settings">
-                {/* no settings are really necessary */}
-            </FormSection>
-        </SettingsPage>
-    },
+   onStart() {      
+      Patcher.before(Messages, "sendMessage", (self, args, orig) => {
+         const content = args[1]["content"];
+         if (content.includes("https://www.instagram.com/p/")) {
+            args[1]["content"] = content.replace(
+               new RegExp("https://www.instagram.com/p/", "g"), 
+               "https://www.ddinstagram.com/p/"
+            );
+         }
+      });
+   },
+   onStop() {
+      Patcher.unpatchAll();
+   },
+   getSettingsPanel({ settings }) {
+      return <Settings settings={settings} />;
+   }
 };
 
-registerPlugin(BetterInstagramEmbeds);
+registerPlugin(ChangeInstagramLink);

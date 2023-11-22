@@ -1,19 +1,19 @@
-import { FormRow, FormSwitch } from 'enmity/components';
+import { FormInput } from 'enmity/components';
 import { SettingsStore } from 'enmity/api/settings';
 import { React } from 'enmity/metro/common';
+import { get, set } from 'enmity/api/settings'
 
 interface SettingsProps {
    settings: SettingsStore;
 }
 
 export default ({ settings }: SettingsProps) => {
-   return <FormRow
-      label='Example Setting'
-      trailing={
-         <FormSwitch
-            value={settings.get('example', true)}
-            onValueChange={() => settings.toggle('example', true)}
-         />
-      }
-   />;
+   return <>
+      <FormInput
+         value={get("BetterInstagramEmbeds", "urlPrefix", "")}
+         onChange={v => set("BetterInstagramEmbeds", "urlPrefix", v)}
+         placeholder={`Prefix`}
+         title='Custom URL Prefix'
+      />
+   </>
 };
