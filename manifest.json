@@ -1,11 +1,14 @@
 {
-   "name": "SilentTyping",
-   "version": "1.0.0",
-   "description": "Silences your typing indicator.",
-   "authors": [
+    "name": "BetterInstagramEmbeds",
+    "version": "1.0.0",
+    "build": "patch-1.0.16",
+    "description": "Convert Instagram links to ddInstagram links so the embed is better.",
+    "authors": [
       {
-         "name": "eternal",
-         "id": "263689920210534400"
+        "name": "GooglyBlox",
+        "id": "327559129705218049"
       }
-   ]
-}
+    ],
+    "color": "#ff0069",
+    "sourceUrl": ""
+  }
