@@ -17,4 +17,7 @@
 <div align='center'> 
    <h3>Acknowledgements</h3>
    This pretty much ended up being a repurposed fork of <a href="https://github.com/jqms/enmity-plugins/tree/main/ChangeDiscordLink">jqms's ChangeDiscordLink plugin</a>, so credit for most of the code goes to them!
+
+   Additionally, thank you to <a href="https://www.ddinstagram.com/">InstaFix</a> for the super easy way to improve Instagram's embeds.
 </div>
+
